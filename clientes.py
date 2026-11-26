@@ -82,6 +82,10 @@ def excluir_cliente():
     if confirmar(f"Excluir {c['nome']}?"):
         clientes.remove(c)
         print("Cliente excluído.")
+    from imoveis import cliente_tem_imoveis
+    if cliente_tem_imoveis(c["id"]):
+        print("Não é possível excluir: o cliente possui imóveis.")
+        return
 
 def menu_clientes():
     while True:
@@ -96,3 +100,4 @@ def menu_clientes():
         elif op == 5: excluir_cliente()
         elif op == 0: break
         else: print("Opção inválida.")
+
